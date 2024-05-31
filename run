@@ -1,0 +1,15 @@
+import pandas as pd
+import seaborn as sns
+from sklearn import linear_model
+df = pd.read_csv(r'/content/mycsv.csv')
+import os
+import numpy as np
+df.isnull().sum()
+missing_value = ["N/a","na",np.nan]
+df = pd.read_csv(r'/content/insurance.csv',na_values=missing_value)
+sns.heatmap(df.isnull(), yticklabels=False)
+df.fillna(method="ffill")
+df.interpolate()
+x=df.iloc[:, :-1].values
+y=df.iloc[:, 3].values
+#forward fill filling the missing value 
